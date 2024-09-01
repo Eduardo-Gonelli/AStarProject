@@ -5,7 +5,7 @@ using TMPro;
 public class AStarNode : MonoBehaviour
 {
     public AStarNode parent;
-    public List<AStarNode> neighbors;
+    //public List<AStarNode> neighbors;
     public float gCost, hCost, fCost;    
     public NodeStatus status;
     AStarPathfinding pathfinding;
@@ -34,20 +34,25 @@ public class AStarNode : MonoBehaviour
         GetComponent<Renderer>().material = material;
     }
 
+    public void ResetNode()
+    {
+        parent = null;
+        gCost = hCost = fCost = 0;
+        text.text = "";
+        //neighbors.Clear();
+    }
+
     private void OnMouseDown()
     {
-        if(pathfinding.gameStatus == AStarPathfinding.GameStatus.SelectStart)
+        if (status == NodeStatus.Obstacle) return;        
+        if (pathfinding.gameStatus == AStarPathfinding.GameStatus.SelectStart)
         {
-            pathfinding.SetStartNode(this);
+            pathfinding.SetStartNode(this);            
         }
         else if(pathfinding.gameStatus == AStarPathfinding.GameStatus.SelectEnd)
         {
-            pathfinding.SetEndNode(this);
-            pathfinding.gameStatus = AStarPathfinding.GameStatus.Ready;
+            pathfinding.SetEndNode(this);            
         }
-        else
-        {
-            return;
-        }
+        else { return; }
     }
 }
