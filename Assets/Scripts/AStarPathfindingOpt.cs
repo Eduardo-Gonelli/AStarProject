@@ -169,10 +169,4 @@ public class AStarPathfindingOpt : MonoBehaviour
         }
         gameStatus = GameStatus.None;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
