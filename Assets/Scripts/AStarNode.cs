@@ -39,17 +39,16 @@ public class AStarNode : MonoBehaviour
         neighbors.Clear();
     }
 
-    private void OnMouseDown()
-    {
+    private void OnMouseDown() {
         if (status == NodeStatus.Obstacle) return;
-        if (pathfinding.gameStatus == AStarPathfinding.GameStatus.SelectStart)
-        {
+        if (pathfinding.gameStatus == AStarPathfinding.GameStatus.SelectStart) {
             pathfinding.SetStartNode(this);
         }
-        else if(pathfinding.gameStatus == AStarPathfinding.GameStatus.SelectEnd)
-        {
+        else if(pathfinding.gameStatus == AStarPathfinding.GameStatus.SelectEnd) {
             pathfinding.SetEndNode(this);
         }
-        else { return; }
+        else { 
+            return; 
+        }
     }
 }

@@ -89,14 +89,10 @@ public class AStarPathfindingOpt : MonoBehaviour
     {
         foreach (AStarNodeOpt node in grid)
         {
-            if ((Mathf.Approximately(node.transform.position.x, currentNode.transform.position.x + 1)
-                && Mathf.Approximately(node.transform.position.z, currentNode.transform.position.z))
-                || (Mathf.Approximately(node.transform.position.x, currentNode.transform.position.x - 1)
-                && Mathf.Approximately(node.transform.position.z, currentNode.transform.position.z))
-                || (Mathf.Approximately(node.transform.position.x, currentNode.transform.position.x)
-                && Mathf.Approximately(node.transform.position.z, currentNode.transform.position.z + 1))
-                || (Mathf.Approximately(node.transform.position.x, currentNode.transform.position.x)
-                && Mathf.Approximately(node.transform.position.z, currentNode.transform.position.z - 1)))
+            float deltaX = Mathf.Abs(node.transform.position.x - currentNode.transform.position.x);
+            float deltaZ = Mathf.Abs(node.transform.position.z - currentNode.transform.position.z);
+
+            if (Mathf.Approximately(deltaX + deltaZ, 1f))
             {
                 if (closedList.Contains(node) || node.status == NodeStatus.Obstacle || node == startNode)
                 {
